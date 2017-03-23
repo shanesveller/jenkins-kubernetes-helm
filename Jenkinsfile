@@ -15,7 +15,11 @@ podTemplate(
 
     container('docker') {
       stage('Build Service') {
-        sh 'docker build -t shanesveller/jenkins:latest images/jenkins/'
+        sh """
+        docker build -t shanesveller/jenkins:${BRANCH_NAME}-${BUILD_NUMBER} images/jenkins/
+        docker tag shanesveller/jenkins:${BRANCH_NAME}-${BUILD_NUMBER} shanesveller/jenkins:${BRANCH_NAME}
+        docker tag shanesveller/jenkins:${BRANCH_NAME}-${BUILD_NUMBER} shanesveller/jenkins:latest
+        """
       }
 
       stage('Push Service') {

@@ -1,7 +1,7 @@
 podTemplate(
   label: 'jenkins-kubernetes-helm',
             containers: [
-              containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:2.62', args: '${computer.jnlpmac} ${computer.name}', command: ''),
+              containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:3.7-1-alpine', args: '${computer.jnlpmac} ${computer.name}', command: ''),
               // Minikube v0.17.1
               containerTemplate(name: 'docker', image: 'docker:1.11.1', ttyEnabled: true, command: 'cat'),
             ],
